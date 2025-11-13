@@ -1,0 +1,27 @@
+# .github/workflows/ci.yml
+name: 'Integracion Continua de Login'
+
+on:
+  push:
+    branches: [ "master" ] # Se ejecuta cuando haces push a la rama master
+  pull_request:
+    branches: [ "master" ] # Se ejecuta si abres un Pull Request a master
+
+jobs:
+  test_login:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 1. Obtener el codigo (Checkout)
+        uses: actions/checkout@v4
+        
+      - name: 2. Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: 3. Instalar Dependencias (npm install)
+        run: npm install
+
+      - name: 4. Ejecutar las Pruebas Unitarias (Jest)
+        run: npm test
