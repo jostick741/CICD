@@ -1,11 +1,11 @@
 # .github/workflows/ci.yml
-name: 'Integracion Continua de Login'
+name: 'Integracion Continua de Login' # <-- Este nombre ahora SI funcionará
 
 on:
   push:
-    branches: [ "master" ] # Se ejecuta cuando haces push a la rama master
+    branches: [ "main" ]  # <--- ¡CORREGIDO! Ahora dispara en 'main'
   pull_request:
-    branches: [ "master" ] # Se ejecuta si abres un Pull Request a master
+    branches: [ "main" ] 
 
 jobs:
   test_login:
@@ -14,7 +14,7 @@ jobs:
     steps:
       - name: 1. Obtener el codigo (Checkout)
         uses: actions/checkout@v4
-        
+
       - name: 2. Configurar Node.js
         uses: actions/setup-node@v4
         with:
